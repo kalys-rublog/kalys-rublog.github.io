@@ -1,8 +1,8 @@
 ---
 layout: post
-title:  "Фидбек по выступление на GDG Fest 2015"
+title:  "Фидбек по выступлению на GDG Fest 2015"
 date:   2015-11-23 00:00:01
-description: Фидбек по выступление на GDG Fest 2015
+description: Фидбек по выступлению на GDG Fest 2015
 categories:
 - gdg
 - блог
