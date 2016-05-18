@@ -34,3 +34,7 @@ permalink: ruby-advices-for-beginners
 #### Читайте чужой код
 
 И если не понимаете, что делает какой-то кусок кода, то задавайте вопросы в [телеграм-чатике](https://telegram.me/rubyata).
+
+**UPD**:
+
+[best-ruby](http://best-ruby.com) – отличный набор трюков и хороших практик.
