@@ -1,0 +1,180 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Tiligram</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/black.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+var link = document.createElement( 'link' );
+link.rel = 'stylesheet';
+link.type = 'text/css';
+link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section data-markdown id="invite">
+          ### Бот Tiligram: Tili.kg, Telegram, Go, BoltDB, BleveSearch
+        </section>
+        <section data-markdown id="why">
+          #### Зачем вот это всё?
+
+          * Сайт Tili.kg медленный и нет телеграм бота
+          * Самообразование, мотивация к изучению новых вещей
+        </section>
+        <section data-markdown id="new-things">
+          #### Новые вещи
+
+          * Go lang
+          * Bolt DB, Badger и embedded storage в целом
+          * Bleve search
+        </section>
+
+        <section id ="golang">
+          <p>С Go lang всё понятно</p>
+          <p class="fragment"><img src="img/golang.jpg" width="750" /></p>
+        </section>
+
+        <section id ="golang-2" data-markdown>
+          #### Go lang
+
+          * Скорость
+          * Экосистема
+          * Коммюнити
+          * Ресурсы
+          * Blockchain
+        </section>
+
+        <section id="embeddable-store" data-markdown>
+          #### Локальные хранилища (Embeddable store)
+
+          * RocksDB (NATS, iron.io)
+          * LevelDB
+          * Badger
+          * Bolt
+          * Bunt
+
+          Note:
+          С такими системами я работал before it was cool. Paradox, dBase, MS Access.
+          Но они все были не SQL, не было тогда NoSQL вообще, как и хипстеров.
+        </section>
+
+        <section id="storage-criteria" data-markdown>
+          #### Критерии для хранилища
+
+          * Pure Go
+          * Key-value
+          * Оптимизация на чтение
+
+          Note:
+          pure-go - чтобы читать исходники
+          key-value - потому что структура словаря идеально подходит
+        </section>
+
+        <section data-markdown>
+          #### BoltDB vs. BadgerDB
+        </section>
+
+        <section id="boltdb" data-markdown>
+          #### BoltDB
+
+          * Стабильный и надежный
+          * Популярный
+          * B-Tree
+          * Оптимизирован на чтение
+        </section>
+
+        <section id="badger" data-markdown>
+          #### BadgerDB
+
+          * Новый (январь 2017)
+          * LSM-Tree
+          * Оптимизиция на обновление данных
+        </section>
+
+        <section id="binary-search">
+          <h4>Бинарный поиск</h4>
+          <video width="750" controls>
+            <source src="img/binary_search.mp4?olol" type="video/mp4" />
+          </video>
+        </section>
+
+        <section id="bst">
+          <h4>Бинарный поиск</h4>
+
+          <img width="750" src="img/logn.png" alt="logn" />
+        </section>
+
+        <section id="bst-1">
+          <h4>Бинарное дерево поиска (BST)</h4>
+          <table>
+            <thead>
+              <tr>
+                <th></th>
+                <th>Массив (несорт.)</th>
+                <th>Связный список</th>
+                <th>Массив (сорт.)</th>
+                <th>BST (баланс.)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Поиск</td>
+                <td>O(n)</td>
+                <td>O(n)</td>
+                <td>O(log n)</td>
+                <td>O(log n)</td>
+              </tr>
+              <tr>
+                <td>Добавление</td>
+                <td>O(1)</td>
+                <td>O(1)</td>
+                <td>O(n)</td>
+                <td>O(log n)</td>
+              </tr>
+              <tr>
+                <td>Удаление</td>
+                <td>O(n)</td>
+                <td>O(n)</td>
+                <td>O(n)</td>
+                <td>O(log n)</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section id ="golang">
+        </section>
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+// More info about config & dependencies:
+// - https://github.com/hakimel/reveal.js#configuration
+// - https://github.com/hakimel/reveal.js#dependencies
+Reveal.initialize({
+  dependencies: [
+    { src: 'plugin/markdown/marked.js' },
+    { src: 'plugin/markdown/markdown.js' },
+    { src: 'plugin/notes/notes.js', async: true },
+    { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+  ]
+});
+    </script>
+  </body>
+</html>
