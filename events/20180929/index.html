@@ -161,9 +161,7 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
         <section id="bst-2">
           <div class="fragment" style="float: left; width: 48%; background-color: white"><img alt="" src="img/balanced_bst.png" /></div>
           <div class="fragment" style="background-color: white; width: 48%; float: right"><img src="img/unbalanced_bst.png" alt="" /></div>
-
         </section>
-
 
         <section id="bst-3">
           <a href="https://www.cs.usfca.edu/~galles/visualization/BST.html" target="_blank">Визуализация</a>
@@ -175,10 +173,134 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
           </div>
         </section>
 
-        <section id="golang">
+        <section id="btree" data-markdown>
+          #### B-Tree
+
+          Note:
+          BST хорошо работает в RAM, но не блочных девайсах
+          Bayer, McCrate in Boeing
         </section>
 
-        <section id="golang">
+        <section id="btree-2">
+          <div style="background-color: white">
+            <img alt="" src="img/btree.png" />
+          </div>
+        </section>
+
+        <section id="btree-3">
+          <a href="https://www.cs.usfca.edu/~galles/visualization/BTree.html" target="_blank">Визуализация</a>
+        </section>
+
+        <section id="lsm" data-markdown>
+          #### LSM-Tree
+        </section>
+
+        <section id="lsm-2">
+          <div style="background-color: white">
+            <img alt="" src="img/lsm.png" />
+          </div>
+
+          <aside class="notes">SSTable, Immutable SSTable, SStables added incrementally, Flush on size or time limit</aside>
+        </section>
+
+        <section id="lsm-3">
+          <h4>SSTable</h4>
+          <div style="background-color: white">
+            <img src="img/sstable.png" alt="" />
+          </div>
+
+        </section>
+
+        <section id="lsm-4">
+          <h4>Чтение</h4>
+          <div style="background-color: white">
+            <img src="img/lsm_read.png" alt="" />
+          </div>
+
+        </section>
+
+        <section id="lsm-5">
+          <h4>Объединение данных из SSTable</h4>
+          <div style="background-color: white">
+            <img src="img/lsm_read2.png" alt="" />
+          </div>
+
+        </section>
+
+        <section id="lsm-6">
+          <h4>Процесс уплотнения данных (Compaction)</h4>
+          <div style="background-color: white">
+            <img src="img/lsm_compaction.png" alt="" />
+          </div>
+        </section>
+
+        <section id="btree-vs-lsm">
+          <table>
+            <thead>
+              <tr>
+                <th>B-Tree</th>
+                <th width="20"></th>
+                <th>LSM-Tree</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Оптимизация на чтение</td>
+                <td></td>
+                <td>Оптимизация на запись</td>
+              </tr>
+              <tr>
+                <td>Не хранится история всех изменений</td>
+                <td></td>
+                <td>Отсутствие фрагментации</td>
+              </tr>
+              <tr>
+                <td>Нужно дефрагментировать</td>
+                <td></td>
+                <td>Нужно уплотнять</td>
+              </tr>
+              <tr>
+                <td>Использование блокировок во время записи</td>
+                <td></td>
+                <td>Параллельный доступ без блокировок</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section id="rum-conjecture">
+          <h4>Гипотеза RUM (Read, Update, Memory)</h4>
+          <img alt="" src="img/rum.png" />
+        </section>
+
+        <section id="bleve" data-markdown="">
+          #### Bleve Search
+        </section>
+
+        <section id="bleve-1" data-markdown="">
+          #### Типы поиска
+
+          * Ключевое слово
+          * Фраза
+          * Вхождение
+          * Вхождение по фразе
+          * Префикс
+        </section>
+
+        <section id="bleve-2" data-markdown="">
+          #### Фичи
+
+          * Подсветка
+          * Scoring
+          * Фасеты
+          * Query String
+        </section>
+
+        <section class="bleve-tokenizers" data-markdown="">
+          #### Токенайзеры
+
+          * libstemming
+          * unicode
         </section>
       </div>
     </div>
