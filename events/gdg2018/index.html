@@ -1,0 +1,251 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Tiligram</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/black.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+var link = document.createElement( 'link' );
+link.rel = 'stylesheet';
+link.type = 'text/css';
+link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section data-markdown id="first">
+          ### B-Tree vs. LSM-Tree: какую систему БД использовать для следующего проекта
+
+          @railsware
+        </section>
+
+        <section data-markdown id="choice">
+          ### Проблемы при выборе СУБД
+
+          * Overkill
+          * Ограниченный кругозор
+          * Отсутствие анализа
+        </section>
+
+        <section data-markdown id="pet-project">
+          ### Пет проджект Tiligram
+
+          * Go lang
+          * Bolt DB, Badger и embedded storage в целом
+          * Bleve search
+        </section>
+
+        <section id="embeddable-store" data-markdown>
+          ### Локальные хранилища (Embeddable store)
+
+          * RocksDB (NATS, iron.io)
+          * LevelDB
+          * Badger
+          * Bolt
+          * Bunt
+        </section>
+
+        <section id="boltdb" data-markdown>
+          ### BoltDB
+
+          * Стабильный и надежный
+          * Популярный
+          * B-Tree
+          * Оптимизирован на чтение
+        </section>
+
+        <section id="binary-search">
+          <h3>Бинарный поиск</h3>
+          <img width="750" src="img/binary_search.jpeg" alt="logn" />
+        </section>
+
+        <section id="binary-search-1">
+          <img width="500" src="img/guinea.png" alt="logn" />
+        </section>
+
+        <section id="bst">
+          <h3>Бинарный поиск</h3>
+
+          <img width="750" src="img/logn.png" alt="logn" />
+        </section>
+
+        <section id="bst-1">
+          <h3>Бинарное дерево поиска (BST)</h3>
+          <table>
+            <thead>
+              <tr>
+                <th></th>
+                <th>Массив (несорт.)</th>
+                <th>Связный список</th>
+                <th>Массив (сорт.)</th>
+                <th>BST (баланс.)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Поиск</td>
+                <td>O(n)</td>
+                <td>O(n)</td>
+                <td>O(log n)</td>
+                <td>O(log n)</td>
+              </tr>
+              <tr>
+                <td>Добавление</td>
+                <td>O(1)</td>
+                <td>O(1)</td>
+                <td>O(n)</td>
+                <td>O(log n)</td>
+              </tr>
+              <tr>
+                <td>Удаление</td>
+                <td>O(n)</td>
+                <td>O(n)</td>
+                <td>O(n)</td>
+                <td>O(log n)</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section id="bst-2">
+          <div class="fragment" style="float: left; width: 48%; background-color: white"><img alt="" src="img/balanced_bst.png" /></div>
+          <div class="fragment" style="background-color: white; width: 48%; float: right"><img src="img/unbalanced_bst.png" alt="" /></div>
+        </section>
+
+        <section id="btree" data-markdown>
+          ### B-Tree
+
+          Note:
+          BST хорошо работает в RAM, но не блочных девайсах
+          Bayer, McCrate in Boeing
+        </section>
+
+        <section id="btree-2">
+          <div style="background-color: white">
+            <img alt="" src="img/btree.png" />
+          </div>
+        </section>
+
+        <section id="badger" data-markdown>
+          ### BadgerDB
+
+          * Новый (январь 2017)
+          * LSM-Tree
+          * Оптимизиция на обновление данных
+        </section>
+
+
+        <section id="lsm" data-markdown>
+          ### LSM-Tree
+
+          BigTable, HBase, LevelDB, RocksDB, MongoDB, Apache Cassandra, InfluxDB и т.д.
+        </section>
+
+        <section id="lsm-2">
+          <div style="background-color: white">
+            <img alt="" src="img/lsm.png" />
+          </div>
+
+          <aside class="notes">SSTable, Immutable SSTable, SStables added incrementally, Flush on size or time limit</aside>
+        </section>
+
+        <section id="lsm-3">
+          <h4>SSTable</h4>
+          <div style="background-color: white">
+            <img src="img/sstable.png" alt="" />
+          </div>
+
+        </section>
+
+        <section id="lsm-4">
+          <h4>Чтение</h4>
+          <div style="background-color: white">
+            <img src="img/lsm_read.png" alt="" />
+          </div>
+
+        </section>
+
+        <section id="lsm-5">
+          <h4>Объединение данных из SSTable</h4>
+          <div style="background-color: white">
+            <img src="img/lsm_read2.png" alt="" />
+          </div>
+
+        </section>
+
+        <section id="lsm-6">
+          <h4>Процесс уплотнения данных (Compaction)</h4>
+          <div style="background-color: white">
+            <img src="img/lsm_compaction.png" alt="" />
+          </div>
+        </section>
+
+        <section id="btree-vs-lsm">
+          <table>
+            <thead>
+              <tr>
+                <th>B-Tree</th>
+                <th width="20"></th>
+                <th>LSM-Tree</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Оптимизация на чтение</td>
+                <td></td>
+                <td>Оптимизация на запись</td>
+              </tr>
+              <tr>
+                <td>Не хранится история всех изменений</td>
+                <td></td>
+                <td>Отсутствие фрагментации</td>
+              </tr>
+              <tr>
+                <td>Нужно дефрагментировать</td>
+                <td></td>
+                <td>Нужно уплотнять</td>
+              </tr>
+              <tr>
+                <td>Использование блокировок во время записи</td>
+                <td></td>
+                <td>Параллельный доступ без блокировок</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+        <section id="questions">
+          Вопросы
+        </section>
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+// More info about config & dependencies:
+// - https://github.com/hakimel/reveal.js#configuration
+// - https://github.com/hakimel/reveal.js#dependencies
+Reveal.initialize({
+  dependencies: [
+    { src: 'plugin/markdown/marked.js' },
+    { src: 'plugin/markdown/markdown.js' },
+    { src: 'plugin/notes/notes.js', async: true },
+    { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+  ]
+});
+    </script>
+  </body>
+</html>
